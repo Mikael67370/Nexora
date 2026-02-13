@@ -1304,7 +1304,10 @@
 
       .nav-cta { display: none; }
 
-      .hero { padding: 148px 0 96px; }
+      .hero { padding: 140px 0 80px; }
+
+      .hero-sub { font-size: 1.1rem; }
+      .hero-body { font-size: 0.95rem; }
 
       .services-grid,
       .pricing-grid,
@@ -1314,9 +1317,26 @@
         grid-template-columns: 1fr;
       }
 
+      .gallery { gap: 20px; margin-bottom: 48px; }
+
+      .ba-slider { aspect-ratio: 3/4; }
+
+      .pricing-card { padding: 32px 24px; }
+
+      .pricing-amount { font-size: 2.25rem; }
+
+      .testimonials-grid { gap: 16px; }
+      .testimonial-card { padding: 24px; }
+      .testimonial-text { font-size: 0.92rem; }
+
       .why-grid { grid-template-columns: 1fr; }
 
-      .contact-grid { grid-template-columns: 1fr; }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .contact-form-wrapper { padding: 28px 20px; }
 
       .form-row { grid-template-columns: 1fr; }
 
@@ -1324,10 +1344,28 @@
       .hero-ctas .btn { text-align: center; }
 
       .section-header { margin-bottom: 48px; }
+      .section-subtitle { font-size: 1rem; }
+
+      .booking-step { padding: 20px 16px; }
+      .booking-step h4 { font-size: 0.9rem; }
+      .booking-step p { font-size: 0.82rem; }
+
+      .secure-payment-note {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .secure-payment-note p { text-align: center; }
+
+      .step-number { width: 60px; height: 60px; font-size: 1.25rem; }
+      .step h4 { font-size: 0.95rem; }
+      .step p { font-size: 0.85rem; }
 
       .footer-top {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 36px;
+        padding: 48px 0 36px;
         text-align: center;
       }
 
@@ -1335,20 +1373,66 @@
 
       .footer-desc { max-width: 100%; }
 
+      .footer-wa-btn { width: 100%; justify-content: center; }
+
+      .footer-nav-col { text-align: center; }
+      .footer-links { align-items: center; }
+
+      .footer-hours-col { text-align: center; }
+      .footer-hours-row { font-size: 0.82rem; }
+
       .footer-bottom {
         flex-direction: column;
         text-align: center;
+        padding: 20px 0;
       }
 
-      .footer-legal { justify-content: center; }
+      .footer-legal {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
 
       .footer-badge { justify-content: center; }
     }
 
     @media (max-width: 480px) {
       .container { padding: 0 16px; }
-      .hero { padding: 128px 0 72px; }
-      section { padding: 56px 0; }
+      .hero { padding: 120px 0 64px; }
+      section { padding: 48px 0; }
+
+      .hero-sub { font-size: 1rem; }
+      .hero-body { font-size: 0.9rem; margin-bottom: 32px; }
+
+      .service-card { padding: 24px 20px; }
+      .service-card h4 { font-size: 0.95rem; }
+      .service-card p { font-size: 0.85rem; }
+
+      .pricing-amount { font-size: 2rem; }
+      .pricing-card { padding: 28px 20px; }
+      .pricing-deposit { font-size: 0.8rem; padding: 8px 12px; }
+
+      .btn { padding: 12px 24px; font-size: 0.92rem; }
+      .btn-stripe { font-size: 0.85rem; }
+
+      .gallery-caption { padding: 12px 16px; font-size: 0.82rem; }
+
+      .testimonial-card { padding: 20px; }
+      .testimonial-text { font-size: 0.88rem; margin-bottom: 14px; }
+      .testimonial-author { font-size: 0.82rem; }
+
+      .why-item { padding: 18px; gap: 12px; }
+      .why-text h4 { font-size: 0.9rem; }
+      .why-text p { font-size: 0.82rem; }
+
+      .contact-form-wrapper { padding: 24px 16px; }
+
+      .footer-top { gap: 28px; padding: 36px 0 28px; }
+      .footer-hours-row { font-size: 0.78rem; padding: 6px 0; }
+      .footer-legal { gap: 12px; }
+      .footer-legal li a { font-size: 0.72rem; }
+      .footer-copy { font-size: 0.72rem; }
+      .footer-badge { font-size: 0.7rem; }
     }
   </style>
 </head>
@@ -1723,7 +1807,7 @@
         <div class="section-divider"></div>
       </div>
       <div class="why-us-content">
-        <p>We operate as a small, focused team across London. Every turnover follows a structured checklist, and every booking is handled with direct communication and operational accountability.</p>
+        <p>We're not a marketplace or an agency. We're the team that actually shows up, cleans your property, and sends you proof it's done &mdash; every single time.</p>
         <div class="why-grid">
 
           <div class="why-item">
@@ -1731,8 +1815,8 @@
               <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </div>
             <div class="why-text">
-              <h4>Reliable Scheduling</h4>
-              <p>Confirmed slots with punctual execution. We do not overbook.</p>
+              <h4>Same-Day Turnovers</h4>
+              <p>Guest checks out at 11am, next one arrives at 3pm? We handle tight windows without cutting corners.</p>
             </div>
           </div>
 
@@ -1741,8 +1825,8 @@
               <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             </div>
             <div class="why-text">
-              <h4>Clear Communication</h4>
-              <p>Direct line to your assigned team. No call centres or automated responses.</p>
+              <h4>WhatsApp Updates in Real Time</h4>
+              <p>No apps to download, no dashboards. You get photo reports and updates directly on WhatsApp.</p>
             </div>
           </div>
 
@@ -1751,8 +1835,28 @@
               <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
             </div>
             <div class="why-text">
-              <h4>Structured Cleaning Checklist</h4>
-              <p>Every room cleaned to a documented standard. Nothing missed.</p>
+              <h4>60-Point Cleaning Checklist</h4>
+              <p>Kitchen, bathrooms, bedding, floors, bins, appliances &mdash; every item checked off, every time.</p>
+            </div>
+          </div>
+
+          <div class="why-item">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="why-text">
+              <h4>Damage Detection &amp; Photo Proof</h4>
+              <p>We photograph the property after every clean. Broken items, stains, missing things &mdash; you'll know before the next guest arrives.</p>
+            </div>
+          </div>
+
+          <div class="why-item">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="why-text">
+              <h4>Fixed Pricing, No Surprises</h4>
+              <p>You know exactly what you'll pay before we arrive. No hidden fees, no hourly rates, no surge pricing.</p>
             </div>
           </div>
 
@@ -1761,18 +1865,8 @@
               <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
             <div class="why-text">
-              <h4>Small Professional Team</h4>
-              <p>London-based. Vetted. Consistent faces on every visit.</p>
-            </div>
-          </div>
-
-          <div class="why-item" style="grid-column: 1 / -1; max-width: calc(50% - 10px); justify-self: center;">
-            <div class="why-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div class="why-text">
-              <h4>Operational Accountability</h4>
-              <p>Photo documentation. Damage flags. Full audit trail for every turnover.</p>
+              <h4>Same Team Every Time</h4>
+              <p>No random freelancers. You get the same vetted, London-based team who knows your property inside out.</p>
             </div>
           </div>
 
