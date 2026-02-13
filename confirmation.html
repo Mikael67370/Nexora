@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed – Nexora Property Operations</title>
+  <meta name="description" content="Your deposit has been received. Your Nexora turnover cleaning booking is confirmed.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #f8f9fa;
+      --light-gray: #eef0f2;
+      --charcoal: #2b2d31;
+      --charcoal-light: #4a4d55;
+      --charcoal-muted: #6b7280;
+      --blue: #2563eb;
+      --blue-hover: #1d4ed8;
+      --blue-light: #eff6ff;
+      --blue-border: #bfdbfe;
+      --green: #16a34a;
+      --green-light: #f0fdf4;
+      --green-border: #bbf7d0;
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --radius: 8px;
+      --radius-lg: 12px;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--charcoal);
+      background: var(--off-white);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { color: var(--blue-hover); }
+
+    /* ===== NAV ===== */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--light-gray);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-cube {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-logo-name {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-logo-sub {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 0.55rem;
+      font-weight: 500;
+      color: var(--charcoal-muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .nav-back {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--charcoal-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-back:hover { color: var(--blue); }
+
+    .nav-back svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ===== MAIN ===== */
+    .main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+
+    .confirmation-card {
+      max-width: 600px;
+      width: 100%;
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+
+    /* ===== CHECK ICON ===== */
+    .check-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--green-light);
+      border: 2px solid var(--green-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+    }
+
+    .check-icon svg {
+      width: 36px;
+      height: 36px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .confirmation-card h1 {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+
+    .confirmation-card .subtitle {
+      font-size: 1.05rem;
+      color: var(--charcoal-light);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    /* ===== DETAILS BOX ===== */
+    .details-box {
+      background: var(--blue-light);
+      border: 1px solid var(--blue-border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .details-box h3 {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+
+    .details-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--blue-border);
+    }
+
+    .details-row:last-child { border-bottom: none; }
+
+    .details-label {
+      font-size: 0.9rem;
+      color: var(--charcoal-muted);
+      font-weight: 500;
+    }
+
+    .details-value {
+      font-size: 0.9rem;
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    /* ===== NEXT STEPS ===== */
+    .next-steps {
+      text-align: left;
+      margin-bottom: 32px;
+    }
+
+    .next-steps h3 {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 16px;
+    }
+
+    .next-steps ol {
+      list-style: none;
+      counter-reset: steps;
+      padding: 0;
+    }
+
+    .next-steps li {
+      counter-increment: steps;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 10px 0;
+      font-size: 0.92rem;
+      color: var(--charcoal-light);
+      line-height: 1.55;
+    }
+
+    .next-steps li::before {
+      content: counter(steps);
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== CONTACT NOTE ===== */
+    .contact-note {
+      background: var(--off-white);
+      border: 1px solid var(--light-gray);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .contact-note p {
+      font-size: 0.88rem;
+      color: var(--charcoal-muted);
+      line-height: 1.6;
+    }
+
+    .contact-note a {
+      font-weight: 600;
+    }
+
+    /* ===== CTA ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-hover);
+      color: var(--white);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--white);
+      border-top: 1px solid var(--light-gray);
+      padding: 0 24px;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      padding: 40px 0 32px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo-text {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .footer-logo-sub {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--charcoal-muted);
+      display: block;
+      margin-top: 3px;
+    }
+
+    .footer-desc {
+      font-size: 0.85rem;
+      color: var(--charcoal-muted);
+      text-align: center;
+      max-width: 400px;
+      line-height: 1.6;
+    }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid var(--light-gray);
+      margin: 0;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 20px 0;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--mid-gray);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-legal li a {
+      font-size: 0.78rem;
+      color: var(--mid-gray);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-legal li a:hover { color: var(--charcoal); }
+
+    .footer-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      color: var(--mid-gray);
+    }
+
+    .footer-badge svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--mid-gray);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .confirmation-card {
+        padding: 36px 24px;
+      }
+
+      .confirmation-card h1 {
+        font-size: 1.4rem;
+      }
+
+      .details-row {
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .main {
+        padding: 32px 16px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-legal { justify-content: center; }
+      .footer-badge { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg class="nav-logo-cube" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,8 90,30 90,70 50,92 10,70 10,30" fill="#2b2d31" stroke="none"/>
+          <polygon points="50,8 90,30 50,52 10,30" fill="#4a5568"/>
+          <polygon points="50,52 90,30 90,70 50,92" fill="#2d3748"/>
+          <polygon points="50,52 10,30 10,70 50,92" fill="#1a202c"/>
+          <polygon points="50,20 72,33 50,46 28,33" fill="#ffffff" opacity="0.9"/>
+          <polygon points="50,46 72,33 72,55 50,68" fill="#a0aec0" opacity="0.5"/>
+          <polygon points="50,46 28,33 28,55 50,68" fill="#718096" opacity="0.4"/>
+        </svg>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Nexora</span>
+          <span class="nav-logo-sub">Property Operations</span>
+        </div>
+      </a>
+      <a href="index.html" class="nav-back">
+        <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to Home
+      </a>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="confirmation-card">
+
+      <div class="check-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+
+      <h1>Booking Confirmed</h1>
+      <p style="font-size:0.82rem; font-weight:600; color:var(--charcoal-muted); letter-spacing:0.04em; font-family:monospace; margin-bottom:16px;">Reference ID: NXR-<span id="refId"></span></p>
+      <p class="subtitle">Your deposit of &pound;45 has been received. Your Studio turnover cleaning slot is now secured.</p>
+
+      <div class="details-box">
+        <h3>Payment Summary</h3>
+        <div class="details-row">
+          <span class="details-label">Status</span>
+          <span class="details-value" style="color: var(--green);">Deposit Received</span>
+        </div>
+        <div class="details-row">
+          <span class="details-label">Payment Method</span>
+          <span class="details-value">Processed via secure encrypted payment</span>
+        </div>
+        <div class="details-row">
+          <span class="details-label">Deposit Paid</span>
+          <span class="details-value">&pound;45.00</span>
+        </div>
+        <div class="details-row">
+          <span class="details-label">Remaining Balance</span>
+          <span class="details-value">&pound;45.00 &mdash; payable before completion</span>
+        </div>
+      </div>
+
+      <div class="next-steps">
+        <h3>What Happens Next</h3>
+        <ol>
+          <li>You will receive a confirmation via WhatsApp with your booking reference and scheduled time.</li>
+          <li>The turnover will be completed according to our structured checklist.</li>
+          <li>A full before-and-after photo report will be sent to you upon completion.</li>
+          <li>The remaining balance is settled before or upon completion of the service.</li>
+        </ol>
+      </div>
+
+      <div class="contact-note">
+        <p>If you need to amend your booking or have any questions, contact us directly via <a href="https://wa.me/33769812391" target="_blank" rel="noopener">WhatsApp</a>. We respond within one hour during operating hours.</p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
+        <a href="https://wa.me/33769812391" target="_blank" rel="noopener" class="btn btn-primary" style="gap:8px; width:100%; max-width:320px;">
+          <svg viewBox="0 0 24 24" style="width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Contact via WhatsApp
+        </a>
+        <a href="index.html" class="btn" style="background:transparent; color:var(--charcoal-muted); font-size:0.9rem; padding:10px 24px;">Return to Home</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <svg style="width:26px; height:26px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,8 90,30 90,70 50,92 10,70 10,30" fill="#4a5568" stroke="none"/>
+          <polygon points="50,8 90,30 50,52 10,30" fill="#718096"/>
+          <polygon points="50,52 90,30 90,70 50,92" fill="#4a5568"/>
+          <polygon points="50,52 10,30 10,70 50,92" fill="#2d3748"/>
+          <polygon points="50,20 72,33 50,46 28,33" fill="#ffffff" opacity="0.85"/>
+          <polygon points="50,46 72,33 72,55 50,68" fill="#a0aec0" opacity="0.4"/>
+          <polygon points="50,46 28,33 28,55 50,68" fill="#718096" opacity="0.3"/>
+        </svg>
+        <div>
+          <span class="footer-logo-text">Nexora</span>
+          <span class="footer-logo-sub">Property Operations</span>
+        </div>
+      </div>
+      <p class="footer-desc">Professional turnover cleaning and property support for London Airbnb hosts.</p>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 Nexora Ltd. All rights reserved.</p>
+      <ul class="footer-legal">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+      </ul>
+      <div class="footer-badge">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Payments secured by Stripe
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let ref = '';
+    for (let i = 0; i < 8; i++) ref += chars.charAt(Math.floor(Math.random() * chars.length));
+    document.getElementById('refId').textContent = ref.slice(0,4) + '-' + ref.slice(4);
+  </script>
+
+</body>
+</html>

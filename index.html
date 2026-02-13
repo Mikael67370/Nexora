@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexora – Property Operations</title>
+  <meta name="description" content="Nexora – Property Operations. Professional Airbnb turnover cleaning across London. Same-day turnovers, photo documentation, fixed pricing.">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #f8f9fa;
+      --light-gray: #eef0f2;
+      --mid-gray: #d1d5db;
+      --charcoal: #2b2d31;
+      --charcoal-light: #4a4d55;
+      --charcoal-muted: #6b7280;
+      --blue: #2563eb;
+      --blue-hover: #1d4ed8;
+      --blue-light: #eff6ff;
+      --blue-border: #bfdbfe;
+      --star-gold: #f59e0b;
+      --whatsapp: #25d366;
+      --whatsapp-hover: #1ebe57;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+      --radius: 8px;
+      --radius-lg: 12px;
+      --transition: 0.2s ease;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--charcoal);
+      background: var(--white);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: var(--blue); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--blue-hover); }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section { padding: 96px 0; }
+
+    h1, h2, h3, h4 {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--charcoal);
+    }
+
+    h1 { font-size: clamp(2rem, 4.5vw, 3rem); letter-spacing: 0.01em; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: 0.01em; }
+    h3 { font-size: 1.25rem; }
+    h4 { font-size: 1.1rem; }
+
+    p { color: var(--charcoal-light); }
+
+    .section-subtitle {
+      color: var(--charcoal-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-top: 12px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-header .section-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--blue);
+      border-radius: 2px;
+      margin: 16px auto 0;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-hover);
+      color: var(--white);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+    }
+
+    .btn-secondary:hover {
+      background: var(--blue-light);
+      color: var(--blue-hover);
+      transform: translateY(-1px);
+    }
+
+    .hero .btn-secondary {
+      color: rgba(255,255,255,0.85);
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .hero .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    .btn-whatsapp {
+      background: var(--whatsapp);
+      color: var(--white);
+    }
+
+    .btn-whatsapp:hover {
+      background: var(--whatsapp-hover);
+      color: var(--white);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ===== NAVIGATION ===== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--light-gray);
+      transition: box-shadow var(--transition), background var(--transition);
+    }
+
+    .nav.scrolled { box-shadow: var(--shadow-sm); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-cube {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-logo-name {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-logo-sub {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 0.55rem;
+      font-weight: 500;
+      color: var(--charcoal-muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--charcoal-light);
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+
+    .nav-cta .btn { padding: 10px 22px; font-size: 0.9rem; }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--charcoal);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 180px 0 128px;
+      background: linear-gradient(160deg, #0f1019 0%, #1a1c2e 30%, #2b2d42 60%, #3d4155 85%, #4a5068 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -15%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(160,174,192,0.06) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-content { max-width: 740px; position: relative; z-index: 1; }
+
+    .hero h1 {
+      margin-bottom: 24px;
+      color: var(--white);
+      font-size: clamp(2.2rem, 5vw, 3.25rem);
+      line-height: 1.15;
+      letter-spacing: 0.005em;
+    }
+
+    .hero-sub {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 20px;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .hero-body {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 44px;
+      max-width: 620px;
+      line-height: 1.75;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-divider {
+      width: 40px;
+      height: 2px;
+      background: rgba(37,99,235,0.5);
+      border-radius: 1px;
+      margin-bottom: 20px;
+    }
+
+    /* ===== SERVICES ===== */
+    .services { background: var(--white); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      padding: 32px 28px;
+      border: 1px solid var(--light-gray);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition);
+    }
+
+    .service-card:hover {
+      border-color: var(--blue-border);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--blue-light);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .service-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--blue);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-card h4 {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .service-card p {
+      font-size: 0.92rem;
+      color: var(--charcoal-muted);
+      line-height: 1.6;
+    }
+
+    /* ===== PRICING ===== */
+    .pricing { background: linear-gradient(180deg, var(--off-white) 0%, #e8ecf4 100%); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      text-align: center;
+      transition: all var(--transition);
+    }
+
+    .pricing-card:hover {
+      border-color: var(--blue-border);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .pricing-card.featured {
+      border-color: var(--blue);
+      position: relative;
+    }
+
+    .pricing-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 4px 14px;
+      border-radius: 20px;
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .pricing-card h3 {
+      margin-bottom: 16px;
+      font-size: 1.15rem;
+    }
+
+    .pricing-amount {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .pricing-amount span {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--charcoal-muted);
+    }
+
+    .pricing-per {
+      font-size: 0.9rem;
+      color: var(--charcoal-muted);
+      margin-bottom: 16px;
+    }
+
+    .pricing-card .btn {
+      width: 100%;
+      padding: 12px 24px;
+      font-size: 0.92rem;
+    }
+
+    .pricing-notes {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .pricing-notes p {
+      font-size: 0.95rem;
+      color: var(--charcoal-muted);
+      line-height: 1.7;
+    }
+
+    .pricing-notes p + p { margin-top: 8px; }
+
+    .pricing-deposit {
+      font-size: 0.85rem;
+      color: var(--charcoal-muted);
+      margin-top: 12px;
+      margin-bottom: 24px;
+      line-height: 1.55;
+      padding: 10px 16px;
+      background: var(--blue-light);
+      border-radius: var(--radius);
+      border: 1px solid var(--blue-border);
+    }
+
+    .pricing-deposit strong {
+      color: var(--charcoal-light);
+      font-weight: 600;
+    }
+
+    .btn-stripe {
+      background: var(--charcoal);
+      color: var(--white);
+      gap: 8px;
+    }
+
+    .btn-stripe:hover {
+      background: #1a1c1f;
+      color: var(--white);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-stripe svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .pricing-disclaimer {
+      text-align: center;
+      max-width: 480px;
+      margin: 40px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid var(--light-gray);
+    }
+
+    .pricing-disclaimer p {
+      font-size: 0.82rem;
+      color: var(--charcoal-muted);
+      line-height: 1.6;
+    }
+
+    .pricing-disclaimer p + p { margin-top: 4px; }
+
+    /* ===== SECURE BOOKING ===== */
+    .secure-booking { background: linear-gradient(180deg, #e0e8f5 0%, var(--blue-light) 100%); }
+
+    .secure-booking-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .secure-booking-inner > p {
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--charcoal-light);
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    .booking-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .booking-step {
+      text-align: center;
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
+    }
+
+    .booking-step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: var(--white);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .booking-step h4 {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    .booking-step p {
+      font-size: 0.85rem;
+      color: var(--charcoal-muted);
+      line-height: 1.55;
+    }
+
+    .secure-payment-note {
+      text-align: center;
+      padding: 20px 28px;
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .secure-payment-note svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--blue);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .secure-payment-note p {
+      font-size: 0.9rem;
+      color: var(--charcoal-light);
+      text-align: left;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .process { background: var(--white); }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: calc(12.5% + 36px);
+      right: calc(12.5% + 36px);
+      height: 2px;
+      background: var(--light-gray);
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+    }
+
+    .step-number {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      position: relative;
+      z-index: 1;
+      border: 3px solid var(--white);
+    }
+
+    .step h4 {
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .step p {
+      font-size: 0.92rem;
+      color: var(--charcoal-muted);
+      max-width: 280px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ===== SOCIAL PROOF ===== */
+    .social-proof { background: var(--off-white); }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .gallery-item {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--light-gray);
+      background: var(--white);
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .gallery-item:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+      border-color: var(--blue-border);
+    }
+
+    .ba-slider {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      cursor: col-resize;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .ba-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      color: var(--charcoal-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+    }
+
+    .ba-before {
+      background: linear-gradient(135deg, #d8d8de 0%, #e8e8ec 50%, #dddde2 100%);
+      z-index: 1;
+      clip-path: inset(0 50% 0 0);
+    }
+
+    .ba-after {
+      background: linear-gradient(135deg, #c8d8ed 0%, #dce8f5 50%, #d0e0f2 100%);
+      z-index: 0;
+    }
+
+    .ba-layer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ba-layer.has-img {
+      background: none;
+      font-size: 0;
+    }
+
+    .ba-label {
+      position: absolute;
+      bottom: 12px;
+      padding: 4px 12px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 20px;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .ba-label-before {
+      left: 12px;
+      background: rgba(43,45,49,0.75);
+      color: var(--white);
+      backdrop-filter: blur(4px);
+    }
+
+    .ba-label-after {
+      right: 12px;
+      background: rgba(37,99,235,0.8);
+      color: var(--white);
+      backdrop-filter: blur(4px);
+    }
+
+    .ba-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      background: var(--white);
+      z-index: 4;
+      transform: translateX(-50%);
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      pointer-events: none;
+    }
+
+    .ba-handle::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      pointer-events: none;
+    }
+
+    .ba-handle::after {
+      content: '◂ ▸';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 0.65rem;
+      color: var(--charcoal);
+      font-weight: 700;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .ba-hint {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 4px 10px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+      border-radius: 12px;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .ba-slider.interacted .ba-hint { opacity: 0; }
+
+    .gallery-caption {
+      padding: 16px 20px;
+      font-size: 0.88rem;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      color: var(--charcoal);
+      text-align: center;
+      font-weight: 600;
+      border-top: 1px solid var(--light-gray);
+      letter-spacing: 0.01em;
+    }
+
+    .gallery-caption span {
+      display: block;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--charcoal-muted);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-stars svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--star-gold);
+    }
+
+    .testimonial-text {
+      font-size: 1rem;
+      color: var(--charcoal-light);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      font-size: 0.88rem;
+      color: var(--charcoal-muted);
+      font-weight: 600;
+    }
+
+    /* ===== WHY US ===== */
+    .why-us { background: var(--white); }
+
+    .why-us-content {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .why-us-content > p {
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--charcoal-light);
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 16px;
+      padding: 24px;
+      border: 1px solid var(--light-gray);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition);
+    }
+
+    .why-item:hover {
+      border-color: var(--blue-border);
+      background: var(--blue-light);
+    }
+
+    .why-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--blue-light);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .why-item:hover .why-icon { background: var(--white); }
+
+    .why-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--blue);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .why-text h4 {
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+    }
+
+    .why-text p {
+      font-size: 0.88rem;
+      color: var(--charcoal-muted);
+      line-height: 1.55;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact { background: var(--off-white); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .contact-info h3 {
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .contact-info > p {
+      font-size: 0.95rem;
+      color: var(--charcoal-muted);
+      margin-bottom: 32px;
+      line-height: 1.65;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      border: 1px solid var(--light-gray);
+      border-radius: var(--radius);
+      background: var(--white);
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+
+    .contact-method:hover {
+      border-color: var(--blue-border);
+      box-shadow: var(--shadow-sm);
+      transform: translateX(4px);
+    }
+
+    .contact-method-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-method-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact-method-icon.wa { background: #dcfce7; }
+    .contact-method-icon.wa svg { stroke: var(--whatsapp); fill: none; }
+
+    .contact-method-text { font-size: 0.95rem; }
+    .contact-method-text strong { display: block; font-size: 0.85rem; color: var(--charcoal-muted); font-weight: 500; margin-bottom: 2px; }
+    .contact-method-text span { color: var(--charcoal); font-weight: 600; }
+
+    /* Form */
+    .contact-form-wrapper {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+    }
+
+    .contact-form-wrapper h3 {
+      margin-bottom: 24px;
+      font-size: 1.1rem;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      border: 1px solid var(--mid-gray);
+      border-radius: var(--radius);
+      font-family: inherit;
+      color: var(--charcoal);
+      background: var(--white);
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .contact-form .btn { width: 100%; margin-top: 8px; padding: 14px 24px; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--white);
+      border-top: 1px solid var(--light-gray);
+      color: var(--charcoal-muted);
+      padding: 0;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 48px;
+      padding: 64px 0 48px;
+    }
+
+    .footer-brand-col { display: flex; flex-direction: column; }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .footer-logo-text {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .footer-logo-sub {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--charcoal-muted);
+      display: block;
+      margin-top: 3px;
+    }
+
+    .footer-desc {
+      font-size: 0.88rem;
+      color: var(--charcoal-muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      max-width: 320px;
+    }
+
+    .footer-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--whatsapp);
+      color: var(--white);
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+
+    .footer-wa-btn:hover {
+      background: var(--whatsapp-hover);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .footer-wa-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .footer-nav-col h4,
+    .footer-hours-col h4 {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links li a {
+      font-size: 0.88rem;
+      color: var(--charcoal-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-links li a:hover {
+      color: var(--blue);
+    }
+
+    .footer-hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .footer-hours-row:last-child { border-bottom: none; }
+
+    .footer-hours-row span:first-child { color: var(--charcoal-muted); }
+    .footer-hours-row span:last-child { color: var(--charcoal); font-weight: 600; }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid var(--light-gray);
+      margin: 0;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 24px 0;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--mid-gray);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-legal li a {
+      font-size: 0.8rem;
+      color: var(--mid-gray);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-legal li a:hover { color: var(--charcoal); }
+
+    .footer-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--mid-gray);
+    }
+
+    .footer-badge svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--mid-gray);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .services-grid,
+      .pricing-grid,
+      .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-steps::before { display: none; }
+
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      .booking-steps { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 72px 0; }
+
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-bottom: 1px solid var(--light-gray);
+        padding: 24px;
+        gap: 20px;
+        box-shadow: var(--shadow-md);
+      }
+
+      .nav-cta { display: none; }
+
+      .hero { padding: 148px 0 96px; }
+
+      .services-grid,
+      .pricing-grid,
+      .process-steps,
+      .gallery,
+      .booking-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .why-grid { grid-template-columns: 1fr; }
+
+      .contact-grid { grid-template-columns: 1fr; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { text-align: center; }
+
+      .section-header { margin-bottom: 48px; }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .footer-brand-col { align-items: center; }
+
+      .footer-desc { max-width: 100%; }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-legal { justify-content: center; }
+
+      .footer-badge { justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      .hero { padding: 128px 0 72px; }
+      section { padding: 56px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo">
+        <svg class="nav-logo-cube" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,8 90,30 90,70 50,92 10,70 10,30" fill="#2b2d31" stroke="none"/>
+          <polygon points="50,8 90,30 50,52 10,30" fill="#4a5568"/>
+          <polygon points="50,52 90,30 90,70 50,92" fill="#2d3748"/>
+          <polygon points="50,52 10,30 10,70 50,92" fill="#1a202c"/>
+          <polygon points="50,20 72,33 50,46 28,33" fill="#ffffff" opacity="0.9"/>
+          <polygon points="50,46 72,33 72,55 50,68" fill="#a0aec0" opacity="0.5"/>
+          <polygon points="50,46 28,33 28,55 50,68" fill="#718096" opacity="0.4"/>
+        </svg>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Nexora</span>
+          <span class="nav-logo-sub">Property Operations</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#contact" class="btn btn-primary">Check Availability</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-divider"></div>
+        <p style="font-size:0.78rem; font-weight:600; color:rgba(165,180,210,0.6); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:24px; font-family:'Georgia','Times New Roman',serif;">Nexora &mdash; Property Operations</p>
+        <h1>London Airbnb Turnover Cleaning &ndash; Reliable. Structured. Transparent.</h1>
+        <p class="hero-sub">Protect your bookings with consistent, photo-documented guest turnovers across London.</p>
+        <p class="hero-body">
+          We deliver structured turnover cleaning for Airbnb hosts who need dependable execution between guests.
+          Every clean is completed on schedule, documented with before-and-after photos, and billed at a fixed rate with no hidden charges.
+          Response within the hour. Coverage across London.
+        </p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">Check Availability</a>
+          <a href="#contact" class="btn btn-secondary">Request a Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Operational Turnover Services</h2>
+        <p class="section-subtitle">Everything required for a complete, documented guest changeover.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h4>Same-Day Guest Turnovers</h4>
+          <p>Rapid turnaround between check-out and check-in, scheduled to your exact timeline.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <h4>Before and After Photo Documentation</h4>
+          <p>Full visual record of every turnover, delivered directly to your inbox for complete visibility.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h4>Damage Reporting</h4>
+          <p>Any guest damage or maintenance issues flagged immediately with photographic evidence.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h4>Linen Coordination</h4>
+          <p>Optional linen changeover and laundry coordination to keep your property guest-ready.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h4>Emergency Last-Minute Availability</h4>
+          <p>Short-notice bookings covered. Contact us and we will confirm availability within the hour.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h4>Fixed, Transparent Pricing</h4>
+          <p>No variable rates or surprise charges. Fixed per-property pricing agreed upfront.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <h2>Clear and Competitive Pricing</h2>
+        <p class="section-subtitle">Fixed rates. No hidden fees. No variable surcharges.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="pricing-grid">
+
+        <div class="pricing-card">
+          <h3>Studio</h3>
+          <div class="pricing-amount"><span>&pound;</span>90</div>
+          <p class="pricing-per">per turnover</p>
+          <div class="pricing-deposit">
+            <strong>&pound;45 deposit</strong> to confirm booking.<br>
+            Remaining &pound;45 payable before completion.
+          </div>
+          <a href="#" class="btn btn-stripe" data-tier="studio">
+            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Secure Studio Booking (&pound;45 Deposit)
+          </a>
+        </div>
+
+        <div class="pricing-card featured">
+          <span class="pricing-label">Most Booked</span>
+          <h3>1 Bedroom</h3>
+          <div class="pricing-amount"><span>&pound;</span>120</div>
+          <p class="pricing-per">per turnover</p>
+          <div class="pricing-deposit">
+            <strong>&pound;60 deposit</strong> to confirm booking.<br>
+            Remaining &pound;60 payable before completion.
+          </div>
+          <a href="#" class="btn btn-stripe" data-tier="1br">
+            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Secure 1BR Booking (&pound;60 Deposit)
+          </a>
+        </div>
+
+        <div class="pricing-card">
+          <h3>2 Bedroom</h3>
+          <div class="pricing-amount"><span>&pound;</span>150</div>
+          <p class="pricing-per">per turnover</p>
+          <div class="pricing-deposit">
+            <strong>&pound;75 deposit</strong> to confirm booking.<br>
+            Remaining &pound;75 payable before completion.
+          </div>
+          <a href="#" class="btn btn-stripe" data-tier="2br">
+            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Secure 2BR Booking (&pound;75 Deposit)
+          </a>
+        </div>
+
+      </div>
+      <div class="pricing-notes">
+        <p>Designed to provide consistent quality without premium agency pricing.</p>
+        <p><strong>Volume discounts available for multi-property hosts.</strong></p>
+      </div>
+      <div class="pricing-disclaimer">
+        <p>All bookings are confirmed upon receipt of deposit.</p>
+        <p>Invoices available upon request.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-header">
+        <h2>Simple Process</h2>
+        <p class="section-subtitle">Four steps from enquiry to completed turnover report.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="process-steps">
+
+        <div class="step">
+          <div class="step-number">1</div>
+          <h4>Send Booking Details</h4>
+          <p>Share your property address, check-out and check-in times, and any specific requirements.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h4>Confirm Availability</h4>
+          <p>We review your request and confirm scheduling within the hour.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h4>Secure with Deposit</h4>
+          <p>Lock in your slot with a 50% deposit via our secure Stripe payment link.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h4>Receive Photo Report</h4>
+          <p>After completion, receive a full before-and-after photo report confirming guest readiness.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECURE YOUR BOOKING -->
+  <section class="secure-booking" id="secure-booking">
+    <div class="container">
+      <div class="section-header">
+        <h2>Secure Your Booking</h2>
+        <p class="section-subtitle">A structured payment process designed for clarity and confidence.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="secure-booking-inner">
+        <p>Every booking follows a clear, two-part payment structure. A 50% deposit confirms your scheduling and secures your slot. The remaining balance is settled before the service is completed. This approach ensures commitment on both sides and allows us to allocate resources reliably.</p>
+        <div class="booking-steps">
+          <div class="booking-step">
+            <div class="booking-step-num">1</div>
+            <h4>Confirm Availability</h4>
+            <p>Submit your property details and preferred date. We respond within one hour.</p>
+          </div>
+          <div class="booking-step">
+            <div class="booking-step-num">2</div>
+            <h4>Secure via Stripe</h4>
+            <p>Pay the 50% deposit through a secure Stripe payment link to lock in your slot.</p>
+          </div>
+          <div class="booking-step">
+            <div class="booking-step-num">3</div>
+            <h4>Service Completed</h4>
+            <p>Your property is cleaned to standard and a full photo report is delivered.</p>
+          </div>
+          <div class="booking-step">
+            <div class="booking-step-num">4</div>
+            <h4>Balance Settled</h4>
+            <p>The remaining 50% is payable before or upon completion of the service.</p>
+          </div>
+        </div>
+        <div class="secure-payment-note">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <p>Secure online payment via Stripe. Card, Apple Pay, and Google Pay supported.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="social-proof" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>Trusted by London Hosts</h2>
+        <p class="section-subtitle">Consistent service. Documented results. Verified feedback.</p>
+        <div class="section-divider"></div>
+      </div>
+
+      <!-- Before/After Gallery -->
+      <div class="gallery">
+        <div class="gallery-item">
+          <div class="ba-slider">
+            <div class="ba-layer ba-after has-img"><img src="images/kitchen-after.jpg" alt="Kitchen after cleaning"></div>
+            <div class="ba-layer ba-before has-img"><img src="images/kitchen-before.jpg" alt="Kitchen before cleaning"></div>
+            <span class="ba-label ba-label-before">Before</span>
+            <span class="ba-label ba-label-after">After</span>
+            <div class="ba-handle"></div>
+            <div class="ba-hint">Drag to compare</div>
+          </div>
+          <div class="gallery-caption">Kitchen Turnover<span>Shoreditch, E1</span></div>
+        </div>
+        <div class="gallery-item">
+          <div class="ba-slider">
+            <div class="ba-layer ba-after has-img"><img src="images/bathroom-after.jpg" alt="Bathroom after cleaning"></div>
+            <div class="ba-layer ba-before has-img"><img src="images/bathroom-before.png" alt="Bathroom before cleaning"></div>
+            <span class="ba-label ba-label-before">Before</span>
+            <span class="ba-label ba-label-after">After</span>
+            <div class="ba-handle"></div>
+            <div class="ba-hint">Drag to compare</div>
+          </div>
+          <div class="gallery-caption">Bathroom Reset<span>Notting Hill, W11</span></div>
+        </div>
+        <div class="gallery-item">
+          <div class="ba-slider">
+            <div class="ba-layer ba-after has-img"><img src="images/living-after.jpg" alt="Living area after cleaning"></div>
+            <div class="ba-layer ba-before has-img"><img src="images/living-before.jpg" alt="Living area before cleaning"></div>
+            <span class="ba-label ba-label-before">Before</span>
+            <span class="ba-label ba-label-after">After</span>
+            <div class="ba-handle"></div>
+            <div class="ba-hint">Drag to compare</div>
+          </div>
+          <div class="gallery-caption">Living Area<span>Camden, NW1</span></div>
+        </div>
+      </div>
+
+      <!-- Testimonials -->
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">"I was spending hours coordinating cleaners between guests. Nexora handles everything &mdash; I just get a photo report on WhatsApp when it's done. My ratings went from 4.3 to 4.8 in two months."</p>
+          <p class="testimonial-author">&mdash; Sarah M., Superhost in Shoreditch</p>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">"They spotted a broken shower screen after a guest checkout and sent me photos straight away. Saved me a bad review and an Airbnb claim headache. Absolute lifesaver."</p>
+          <p class="testimonial-author">&mdash; James T., Property Manager in Notting Hill</p>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">"I manage three flats in East London and the fixed pricing means no surprises. The team is always on time, even for same-day turnovers. Wouldn't go back to freelance cleaners."</p>
+          <p class="testimonial-author">&mdash; David R., Airbnb Host in Hackney</p>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">"The linen swap service is a game-changer. Fresh towels and bedding ready for every guest, and I don't have to think about laundry anymore. Communication on WhatsApp is instant."</p>
+          <p class="testimonial-author">&mdash; Priya K., Serviced Accommodation Host in Canary Wharf</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-us" id="why-us">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Hosts Work With Us</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="why-us-content">
+        <p>We operate as a small, focused team across London. Every turnover follows a structured checklist, and every booking is handled with direct communication and operational accountability.</p>
+        <div class="why-grid">
+
+          <div class="why-item">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="why-text">
+              <h4>Reliable Scheduling</h4>
+              <p>Confirmed slots with punctual execution. We do not overbook.</p>
+            </div>
+          </div>
+
+          <div class="why-item">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="why-text">
+              <h4>Clear Communication</h4>
+              <p>Direct line to your assigned team. No call centres or automated responses.</p>
+            </div>
+          </div>
+
+          <div class="why-item">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <div class="why-text">
+              <h4>Structured Cleaning Checklist</h4>
+              <p>Every room cleaned to a documented standard. Nothing missed.</p>
+            </div>
+          </div>
+
+          <div class="why-item">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="why-text">
+              <h4>Small Professional Team</h4>
+              <p>London-based. Vetted. Consistent faces on every visit.</p>
+            </div>
+          </div>
+
+          <div class="why-item" style="grid-column: 1 / -1; max-width: calc(50% - 10px); justify-self: center;">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="why-text">
+              <h4>Operational Accountability</h4>
+              <p>Photo documentation. Damage flags. Full audit trail for every turnover.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2>Secure Your Next Turnover</h2>
+        <p class="section-subtitle">Get in touch to check availability or request a quote.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="contact-grid">
+
+        <div class="contact-info">
+          <h3>Reach Us Directly</h3>
+          <p>We respond to all enquiries within one hour during operating hours.</p>
+          <div class="contact-methods">
+            <a href="https://wa.me/33769812391" class="contact-method" target="_blank" rel="noopener">
+              <div class="contact-method-icon wa">
+                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </div>
+              <div class="contact-method-text">
+                <strong>WhatsApp</strong>
+                <span>+33 7 69 81 23 91</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+          <h3>Send an Enquiry</h3>
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="location">Property Location</label>
+                <input type="text" id="location" name="location" placeholder="e.g. Shoreditch, E1" required>
+              </div>
+              <div class="form-group">
+                <label for="date">Preferred Date</label>
+                <input type="date" id="date" name="date" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="notes">Notes</label>
+              <textarea id="notes" name="notes" placeholder="Property size, access details, or any specific requirements"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+          </form>
+          <div id="formSuccess" style="display:none; text-align:center; padding:32px 0;">
+            <h4 style="margin-bottom:8px;">Enquiry Received</h4>
+            <p style="font-size:0.95rem; color:var(--charcoal-muted);">We will respond within one hour during operating hours.</p>
+          </div>
+        </div>
+
+      </div>
+      <p style="text-align:center; margin-top:48px; font-size:1.05rem; font-weight:600; color:var(--charcoal-light);">
+        Fast response. Clear communication. Reliable execution.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+
+        <!-- Brand Column -->
+        <div class="footer-brand-col">
+          <div class="footer-logo">
+            <svg style="width:28px; height:28px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="50,8 90,30 90,70 50,92 10,70 10,30" fill="#4a5568" stroke="none"/>
+              <polygon points="50,8 90,30 50,52 10,30" fill="#718096"/>
+              <polygon points="50,52 90,30 90,70 50,92" fill="#4a5568"/>
+              <polygon points="50,52 10,30 10,70 50,92" fill="#2d3748"/>
+              <polygon points="50,20 72,33 50,46 28,33" fill="#ffffff" opacity="0.85"/>
+              <polygon points="50,46 72,33 72,55 50,68" fill="#a0aec0" opacity="0.4"/>
+              <polygon points="50,46 28,33 28,55 50,68" fill="#718096" opacity="0.3"/>
+            </svg>
+            <div>
+              <span class="footer-logo-text">Nexora</span>
+              <span class="footer-logo-sub">Property Operations</span>
+            </div>
+          </div>
+          <p class="footer-desc">Professional turnover cleaning and property support for London Airbnb hosts. Structured, reliable, and fully documented.</p>
+          <a href="https://wa.me/33769812391" target="_blank" rel="noopener" class="footer-wa-btn">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            WhatsApp Us
+          </a>
+        </div>
+
+        <!-- Navigation Column -->
+        <div class="footer-nav-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#process">How It Works</a></li>
+            <li><a href="#social-proof">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Hours Column -->
+        <div class="footer-hours-col">
+          <h4>Operating Hours</h4>
+          <div class="footer-hours-row"><span>Monday &ndash; Friday</span><span>9:00 &ndash; 22:00</span></div>
+          <div class="footer-hours-row"><span>Saturday &ndash; Sunday</span><span>9:00 &ndash; 18:00</span></div>
+          <div class="footer-hours-row"><span>Bank Holidays</span><span>By arrangement</span></div>
+        </div>
+
+      </div>
+
+      <hr class="footer-divider">
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Nexora Ltd. All rights reserved.</p>
+        <ul class="footer-legal">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="cancellation.html">Cancellation Policy</a></li>
+        </ul>
+        <div class="footer-badge">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Payments secured by Stripe
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ===== NAV SCROLL SHADOW ===== */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    /* ===== MOBILE NAV TOGGLE ===== */
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const spans = navToggle.querySelectorAll('span');
+      if (navLinks.classList.contains('open')) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+      } else {
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+      }
+    });
+
+    /* Close mobile nav on link click */
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        const spans = navToggle.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+      });
+    });
+
+    /* ===== FORM HANDLING ===== */
+    const form = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = form.querySelector('#name').value.trim();
+      const location = form.querySelector('#location').value.trim();
+      const date = form.querySelector('#date').value;
+
+      if (!name || !location || !date) {
+        /* Highlight empty required fields */
+        form.querySelectorAll('[required]').forEach(input => {
+          if (!input.value.trim()) {
+            input.style.borderColor = '#ef4444';
+            input.addEventListener('input', function handler() {
+              this.style.borderColor = '';
+              this.removeEventListener('input', handler);
+            });
+          }
+        });
+        return;
+      }
+
+      form.style.display = 'none';
+      formSuccess.style.display = 'block';
+    });
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    const animateElements = document.querySelectorAll(
+      '.service-card, .pricing-card, .step, .testimonial-card, .why-item, .gallery-item, .booking-step'
+    );
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    animateElements.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+
+    /* ===== BEFORE/AFTER SLIDERS ===== */
+    document.querySelectorAll('.ba-slider').forEach(slider => {
+      const before = slider.querySelector('.ba-before');
+      const handle = slider.querySelector('.ba-handle');
+      let isDragging = false;
+
+      function updateSlider(x) {
+        const rect = slider.getBoundingClientRect();
+        let pct = ((x - rect.left) / rect.width) * 100;
+        pct = Math.max(5, Math.min(95, pct));
+        before.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+        handle.style.left = pct + '%';
+        if (!slider.classList.contains('interacted')) {
+          slider.classList.add('interacted');
+        }
+      }
+
+      slider.addEventListener('mousedown', (e) => { isDragging = true; updateSlider(e.clientX); });
+      window.addEventListener('mousemove', (e) => { if (isDragging) updateSlider(e.clientX); });
+      window.addEventListener('mouseup', () => { isDragging = false; });
+
+      slider.addEventListener('touchstart', (e) => { isDragging = true; updateSlider(e.touches[0].clientX); }, { passive: true });
+      slider.addEventListener('touchmove', (e) => { if (isDragging) { e.preventDefault(); updateSlider(e.touches[0].clientX); } }, { passive: false });
+      slider.addEventListener('touchend', () => { isDragging = false; });
+    });
+
+    /* ===== STRIPE PAYMENT BUTTONS ===== */
+    const stripeLinks = {
+      'studio': 'https://buy.stripe.com/aFa6oH1qCcJMfeT5Ym7ok01',
+      '1br': 'https://buy.stripe.com/7sYcN5c5g6lo9Uz72q7ok02',
+      '2br': 'https://buy.stripe.com/00wbJ14COh023wb5Ym7ok03'
+    };
+
+    document.querySelectorAll('.btn-stripe').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const tier = btn.getAttribute('data-tier');
+        const url = stripeLinks[tier];
+        if (url && url !== '#') {
+          window.open(url, '_blank');
+        } else {
+          alert('Payment link not yet configured. Please contact us directly to secure your booking.');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

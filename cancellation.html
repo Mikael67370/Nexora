@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cancellation Policy – Nexora Property Operations</title>
+  <meta name="description" content="Nexora Cancellation Policy. Information about cancellations, rescheduling, and refunds.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #f8f9fa;
+      --light-gray: #eef0f2;
+      --mid-gray: #9ca3af;
+      --charcoal: #2b2d31;
+      --charcoal-light: #4a4d55;
+      --charcoal-muted: #6b7280;
+      --blue: #2563eb;
+      --blue-hover: #1d4ed8;
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --radius: 8px;
+      --radius-lg: 12px;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--charcoal);
+      background: var(--off-white);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { color: var(--blue-hover); }
+
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--light-gray);
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-cube { width: 32px; height: 32px; }
+
+    .nav-logo-text { display: flex; flex-direction: column; }
+
+    .nav-logo-name {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .nav-logo-sub {
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--charcoal-muted);
+      margin-top: 2px;
+    }
+
+    .nav-back {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .nav-back:hover { color: var(--blue-hover); }
+
+    .main {
+      flex: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+      width: 100%;
+    }
+
+    .main h1 {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .last-updated {
+      font-size: 0.82rem;
+      color: var(--charcoal-muted);
+      margin-bottom: 36px;
+    }
+
+    .main h2 {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-top: 36px;
+      margin-bottom: 12px;
+    }
+
+    .main p {
+      font-size: 0.95rem;
+      color: var(--charcoal-light);
+      margin-bottom: 16px;
+      line-height: 1.75;
+    }
+
+    .main ul {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .main ul li {
+      font-size: 0.95rem;
+      color: var(--charcoal-light);
+      margin-bottom: 8px;
+      line-height: 1.7;
+    }
+
+    .policy-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 0.92rem;
+    }
+
+    .policy-table th,
+    .policy-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .policy-table th {
+      background: var(--light-gray);
+      font-weight: 700;
+      color: var(--charcoal);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .policy-table td {
+      color: var(--charcoal-light);
+    }
+
+    .footer {
+      background: var(--white);
+      border-top: 1px solid var(--light-gray);
+      padding: 0 24px;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      padding: 40px 0 32px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo-text {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .footer-logo-sub {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--charcoal-muted);
+      display: block;
+      margin-top: 3px;
+    }
+
+    .footer-desc {
+      font-size: 0.85rem;
+      color: var(--charcoal-muted);
+      text-align: center;
+      max-width: 400px;
+      line-height: 1.6;
+    }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid var(--light-gray);
+      margin: 0;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 20px 0;
+    }
+
+    .footer-copy { font-size: 0.78rem; color: var(--mid-gray); }
+
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-legal li a {
+      font-size: 0.78rem;
+      color: var(--mid-gray);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-legal li a:hover { color: var(--charcoal); }
+
+    .footer-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      color: var(--mid-gray);
+    }
+
+    .footer-badge svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--mid-gray);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @media (max-width: 640px) {
+      .main h1 { font-size: 1.4rem; }
+      .main { padding: 32px 16px 48px; }
+      .policy-table { font-size: 0.82rem; }
+      .policy-table th, .policy-table td { padding: 8px 10px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-legal { justify-content: center; }
+      .footer-badge { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg class="nav-logo-cube" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,8 90,30 90,70 50,92 10,70 10,30" fill="#2b2d31" stroke="none"/>
+          <polygon points="50,8 90,30 50,52 10,30" fill="#4a5568"/>
+          <polygon points="50,52 90,30 90,70 50,92" fill="#2d3748"/>
+          <polygon points="50,52 10,30 10,70 50,92" fill="#1a202c"/>
+          <polygon points="50,20 72,33 50,46 28,33" fill="#ffffff" opacity="0.9"/>
+          <polygon points="50,46 72,33 72,55 50,68" fill="#a0aec0" opacity="0.5"/>
+          <polygon points="50,46 28,33 28,55 50,68" fill="#718096" opacity="0.4"/>
+        </svg>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Nexora</span>
+          <span class="nav-logo-sub">Property Operations</span>
+        </div>
+      </a>
+      <a href="index.html" class="nav-back">&larr; Back to Home</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <h1>Cancellation Policy</h1>
+    <p class="last-updated">Last updated: 13 February 2026</p>
+
+    <h2>1. Cancellation by the Client</h2>
+    <p>We understand plans can change. Our cancellation terms are based on how much notice you provide before the scheduled service:</p>
+
+    <table class="policy-table">
+      <thead>
+        <tr>
+          <th>Notice Period</th>
+          <th>Refund</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>More than 48 hours before service</td>
+          <td>Full deposit refund</td>
+        </tr>
+        <tr>
+          <td>24 – 48 hours before service</td>
+          <td>50% deposit refund</td>
+        </tr>
+        <tr>
+          <td>Less than 24 hours before service</td>
+          <td>No refund</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>All cancellations must be communicated via WhatsApp at <a href="https://wa.me/33769812391" target="_blank" rel="noopener">+33 7 69 81 23 91</a>. The cancellation time is based on when the message is received and acknowledged.</p>
+
+    <h2>2. Rescheduling</h2>
+    <p>You may reschedule your booking free of charge if you notify us at least <strong>24 hours</strong> before the original service time. Rescheduling requests made with less than 24 hours' notice will be treated as a cancellation under the terms above.</p>
+    <p>Rescheduled services are subject to availability.</p>
+
+    <h2>3. No-Show / No Access</h2>
+    <p>If our team arrives at the property and is unable to gain access (e.g. wrong code, locked key safe, no response), we will attempt to contact you via WhatsApp. If access is not provided within <strong>30 minutes</strong>, the visit will be treated as a completed booking and no refund will be issued.</p>
+
+    <h2>4. Cancellation by Nexora</h2>
+    <p>In rare circumstances, we may need to cancel or reschedule a booking (e.g. severe weather, team emergency). In such cases:</p>
+    <ul>
+      <li>We will notify you as soon as possible via WhatsApp</li>
+      <li>We will offer a priority rescheduled slot at no extra cost</li>
+      <li>If rescheduling is not possible, a full refund will be issued</li>
+    </ul>
+
+    <h2>5. Refund Processing</h2>
+    <p>All refunds are processed through Stripe and returned to the original payment method. Refunds typically appear within <strong>5–10 business days</strong>, depending on your bank.</p>
+
+    <h2>6. Disputes</h2>
+    <p>If you believe a cancellation charge has been applied unfairly, please contact us via WhatsApp. We review all disputes on a case-by-case basis and aim to resolve them within 48 hours.</p>
+
+    <h2>7. Contact</h2>
+    <p>For cancellations, rescheduling, or questions about this policy, reach us via WhatsApp at <a href="https://wa.me/33769812391" target="_blank" rel="noopener">+33 7 69 81 23 91</a>.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <svg style="width:26px; height:26px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,8 90,30 90,70 50,92 10,70 10,30" fill="#4a5568" stroke="none"/>
+          <polygon points="50,8 90,30 50,52 10,30" fill="#718096"/>
+          <polygon points="50,52 90,30 90,70 50,92" fill="#4a5568"/>
+          <polygon points="50,52 10,30 10,70 50,92" fill="#2d3748"/>
+          <polygon points="50,20 72,33 50,46 28,33" fill="#ffffff" opacity="0.85"/>
+          <polygon points="50,46 72,33 72,55 50,68" fill="#a0aec0" opacity="0.4"/>
+          <polygon points="50,46 28,33 28,55 50,68" fill="#718096" opacity="0.3"/>
+        </svg>
+        <div>
+          <span class="footer-logo-text">Nexora</span>
+          <span class="footer-logo-sub">Property Operations</span>
+        </div>
+      </div>
+      <p class="footer-desc">Professional turnover cleaning and property support for London Airbnb hosts.</p>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 Nexora Ltd. All rights reserved.</p>
+      <ul class="footer-legal">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="cancellation.html">Cancellation Policy</a></li>
+      </ul>
+      <div class="footer-badge">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Payments secured by Stripe
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
